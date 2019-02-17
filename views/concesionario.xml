@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <record model="ir.actions.act_window" id="productos_list_action">
+        <field name="name">productos</field>
+        <field name="res_model">res.partner</field>
+        <field name="view_type">form</field>
+        <field name="view_mode">tree,form</field>
+        <field name="arch" type="xml">
+            <tree string="Listado de productos">
+                <field name="name" />
+            </tree>
+        </field>
+    </record>
+
+    <record model="ir.actions.act_window" id="dueno_list_action">
+        <field name="name">dueno</field>
+        <field name="res_model">concesionario.dueno</field>
+        <field name="view_type">form</field>
+        <field name="view_mode">tree,form</field>
+        <field name="arch" type="xml">
+            <tree string="Listado de dueños">
+                <field name="name" />
+                <field name="apellido"/>
+                <field name="coche_id"/>
+            </tree>
+        </field>
+    </record>
+
+    <record model="ir.actions.act_window" id="coche_list_action">
+        <field name="name">coche</field>
+        <field name="res_model">concesionario.coche</field>
+        <field name="view_type">form</field>
+        <field name="view_mode">tree,form</field>
+        <field name="arch" type="xml">
+            <tree string="Listado de coches">
+                <field name="marca" />
+                <field name="modelo"/>
+                <field name="dueno_id"/>
+            </tree>
+        </field>
+    </record>
+
+    <!-- Tree View of Customer-->
+    <record id="dueno_tree_view" model="ir.ui.view">
+        <field name="name">concesionario.dueno.tree.view</field>
+        <field name="model">concesionario.dueno</field>
+        <field name="arch" type="xml">
+            <tree string="A ver que es">
+                <field name="name"/>
+                <field name="apellido"/>
+                <field name="coche_id"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="coche_tree_view" model="ir.ui.view">
+        <field name="name">concesionario.coche.tree.view</field>
+        <field name="model">concesionario.coche</field>
+        <field name="arch" type="xml">
+            <tree string="A ver que es">
+                <field name="marca"/>
+                <field name="modelo"/>
+                <field name="dueno_id"/>
+            </tree>
+        </field>
+    </record>
+
+    <!-- Form View Of Customer  -->
+    <record id="dueno_form_view" model="ir.ui.view">
+        <field name="name">concesionario.dueno.form.view</field>
+        <field name="model">concesionario.dueno</field>
+        <field name="arch" type="xml">
+            <form>
+             <group>
+                <field name="name" string="Nombre" placeholder="Ex name : Turki" style=" max-width: 1150px;  width: 500px"/>
+                <field name="apellido" string="Apellido"  placeholder="Ex lastName:Makki" style=" max-width: 1150px;  width: 500px" />
+                <field name="coche_id" />
+             </group>
+            </form>
+        </field>
+    </record>
+
+    <record id="coche_form_view" model="ir.ui.view">
+        <field name="name">concesionario.coche.form.view</field>
+        <field name="model">concesionario.coche</field>
+        <field name="arch" type="xml">
+            <form>
+             <group>
+                <field name="marca" string="Nombre" placeholder="Ex name : Turki" style=" max-width: 1150px;  width: 500px"/>
+                <field name="modelo" string="Apellido"  placeholder="Ex lastName:Makki" style=" max-width: 1150px;  width: 500px" />
+                <field name="dueno_id" />
+             </group>
+            </form>
+        </field>
+    </record>
+
+    <record model="ir.ui.view" id="productos_form_view">
+        <field name="name">productos.form</field>
+        <field name="model">res.partner</field>
+        <field name="inherit_id" ref="base.view_partner_form"/>
+            <field name="arch" type="xml">
+            <notebook position="inside">
+                    <page string="Productos">
+                        <group>
+                            <field name="nombre"/>
+                        </group>
+                    </page>
+                </notebook>
+            </field>
+    </record>
+
+    <!--   Create Top Menu  -->
+    <menuitem name="Concesionario" id="touring_menu_root" />
+    <menuitem name="Duenos" id="touring_menu_duenos" parent="touring_menu_root"/>
+    <menuitem name="listado de duenos" id="touring_list_duenos" parent="touring_menu_duenos"
+              action="dueno_list_action"/>
+    <menuitem name="Coches" id="touring_menu_coches" parent="touring_menu_root"/>
+    <menuitem name="listado de coches" id="touring_list_coches" parent="touring_menu_coches"
+              action="coche_list_action"/>
+    <menuitem name="Productos" id="touring_menu_productos" parent="touring_menu_root"/>
+    <menuitem name="listado de coches" id="touring_list_productos" parent="touring_menu_productos"
+              action="productos_list_action"/>
+</odoo>
