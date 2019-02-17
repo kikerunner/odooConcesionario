@@ -17,3 +17,17 @@ class Coche(models.Model):
 class Productos(models.Model):
     _inherit = 'res.partner'
     nombre = fields.Char(string="Nombre")
+
+class Calculos(models.Model):
+    _name = 'concesionario.calculos'
+    nombre = fields.Char(string="Nombre")
+    cantidad = fields.Float()
+    impuesto = fields.Float()
+    resultado = fields.Float(compute='_el_resultado')
+
+    @api.one
+    def _el_resultado(self):
+        if (self.cantidad and self.impuesto):
+            quantity = self.cantidad
+            tax = self.impuesto
+            self.resultado = quantity + tax    

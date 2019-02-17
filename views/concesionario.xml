@@ -40,6 +40,21 @@
         </field>
     </record>
 
+    <record model="ir.actions.act_window" id="calculos_list_action">
+        <field name="name">calculos</field>
+        <field name="res_model">concesionario.calculos</field>
+        <field name="view_type">form</field>
+        <field name="view_mode">tree,form</field>
+        <field name="arch" type="xml">
+            <tree string="Listado de calculos">
+                <field name="nombre" />
+                <field name="cantidad"/>
+                <field name="impuesto"/>
+                <field name="resultado"/>
+            </tree>
+        </field>
+    </record>
+
     <!-- Tree View of Customer-->
     <record id="dueno_tree_view" model="ir.ui.view">
         <field name="name">concesionario.dueno.tree.view</field>
@@ -61,6 +76,19 @@
                 <field name="marca"/>
                 <field name="modelo"/>
                 <field name="dueno_id"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="calculos_tree_view" model="ir.ui.view">
+        <field name="name">concesionario.calculos.tree.view</field>
+        <field name="model">concesionario.calculos</field>
+        <field name="arch" type="xml">
+            <tree string="A ver que es">
+                <field name="nombre"/>
+                <field name="cantidad"/>
+                <field name="impuesto"/>
+                <field name="resultado"/>
             </tree>
         </field>
     </record>
@@ -109,6 +137,20 @@
             </field>
     </record>
 
+    <record id="calculos_form_view" model="ir.ui.view">
+        <field name="name">concesionario.calculos.form.view</field>
+        <field name="model">concesionario.calculos</field>
+        <field name="arch" type="xml">
+            <form>
+             <group>
+                <field name="nombre" />
+                <field name="cantidad" />
+                <field name="impuesto" />
+             </group>
+            </form>
+        </field>
+    </record>
+
     <!--   Create Top Menu  -->
     <menuitem name="Concesionario" id="touring_menu_root" />
     <menuitem name="Duenos" id="touring_menu_duenos" parent="touring_menu_root"/>
@@ -120,4 +162,7 @@
     <menuitem name="Productos" id="touring_menu_productos" parent="touring_menu_root"/>
     <menuitem name="listado de coches" id="touring_list_productos" parent="touring_menu_productos"
               action="productos_list_action"/>
+    <menuitem name="Calculos" id="touring_menu_calculos" parent="touring_menu_root"/>
+    <menuitem name="listado de calculos" id="touring_list_calculos" parent="touring_menu_calculos"
+              action="calculos_list_action"/>
 </odoo>
