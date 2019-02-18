@@ -51,6 +51,7 @@
                 <field name="cantidad"/>
                 <field name="impuesto"/>
                 <field name="resultado"/>
+                <field name="is_paid"/>
             </tree>
         </field>
     </record>
@@ -89,6 +90,7 @@
                 <field name="cantidad"/>
                 <field name="impuesto"/>
                 <field name="resultado"/>
+                <field name="is_paid"/>
             </tree>
         </field>
     </record>
@@ -142,12 +144,28 @@
         <field name="model">concesionario.calculos</field>
         <field name="arch" type="xml">
             <form>
+            <header>
+                <button class="oe_highlight"
+                name="do_toggle_paid" string="Marcar como pagado" type="object"/>
+            </header>
              <group>
                 <field name="nombre" />
                 <field name="cantidad" />
                 <field name="impuesto" />
+                <field name="is_paid"/>
              </group>
             </form>
+        </field>
+    </record>
+
+    <record id="calculos_search_view" model="ir.ui.view">
+        <field name="name">concesionario.calculos</field>
+        <field name="model">concesionario.calculos</field>
+        <field name="arch" type="xml">
+            <search string="calculos">
+                <field name="nombre"/>
+                <field name="cantidad"/>
+            </search>
         </field>
     </record>
 

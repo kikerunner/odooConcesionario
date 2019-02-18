@@ -24,6 +24,12 @@ class Calculos(models.Model):
     cantidad = fields.Float()
     impuesto = fields.Float()
     resultado = fields.Float(compute='_el_resultado')
+    is_paid = fields.Boolean('Pagado')
+
+    @api.one
+    def do_toggle_paid(self):
+        self.is_paid = not self.is_paid
+        return True
 
     @api.one
     def _el_resultado(self):
